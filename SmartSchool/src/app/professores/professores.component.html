@@ -1,5 +1,5 @@
 <div *ngIf="profSelected">
-  <app-titulo [titulo]="'Professor: ' + profSelected.id">
+  <app-titulo [titulo]="(profSelected.id === 0 ? 'Novo Professor' : 'Cód. Professor: ' + profSelected.id)">
     <button class="btn btn-warning" (click)="voltar()">Lista de professores</button>
   </app-titulo>
   
@@ -14,13 +14,13 @@
     </div> -->
     <div class="form-group">
       <hr>
-      <button class="btn btn-success" [disabled]="!professorForm.valid">Enviar</button>
+      <button class="btn btn-success" [disabled]="!professorForm.valid">Salvar</button>
     </div>
   </form>
 </div>
 <div *ngIf="!profSelected">
   <app-titulo [titulo]="titulo">
-    <button class="btn btn-sm btn-success" (click)="voltar()">
+    <button class="btn btn-sm btn-success" (click)="professorNovo()">
       Cadastrar
     </button>
   </app-titulo>

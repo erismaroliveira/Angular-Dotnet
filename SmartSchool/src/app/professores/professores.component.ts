@@ -47,25 +47,42 @@ export class ProfessoresComponent implements OnInit {
     });
   }
 
-  salvarAluno(professor: Professor) {
-    this.professoresService.put(professor.id, professor).subscribe(
-      () => {
-        console.log(professor);
-        this.carregarProfessores();
-      },
-      (erro: any) => {
-        console.error(erro);
-      }
-    );
+  salvarProfessor(professor: Professor) {
+    if (professor.id === 0) {
+      this.professoresService.post(professor).subscribe(
+        () => {
+          console.log(professor);
+          this.carregarProfessores();
+        },
+        (erro: any) => {
+          console.error(erro);
+        }
+      );
+    } else {
+      this.professoresService.put(professor).subscribe(
+        () => {
+          console.log(professor);
+          this.carregarProfessores();
+        },
+        (erro: any) => {
+          console.error(erro);
+        }
+      );
+    }
   }
 
   professorSubmit() {
-    this.salvarAluno(this.professorForm.value);
+    this.salvarProfessor(this.professorForm.value);
   }
 
   profSelect(professor: Professor){
     this.profSelected = professor;
     this.professorForm.patchValue(professor);
+  }
+
+  professorNovo() {
+    this.profSelected = new Professor();
+    this.professorForm.patchValue(this.profSelected);
   }
 
   voltar(){

@@ -88,6 +88,18 @@ export class AlunosComponent implements OnInit {
     this.alunoForm.patchValue(this.alunoSelected);
   }
 
+  deletar(id: number) {
+    this.alunosService.delete(id).subscribe(
+      (model: object) => {
+        console.log(model);
+        this.carregarAlunos();
+      },
+      (erro: any) => {
+        console.error(erro);
+      }
+    );
+  }
+
   voltar(){
     this.alunoSelected = undefined;
   }

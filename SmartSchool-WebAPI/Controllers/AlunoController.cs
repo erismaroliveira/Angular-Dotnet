@@ -110,7 +110,7 @@ public class AlunoController : ControllerBase
             repo.Delete(aluno);
 
             await repo.SaveChangesAsync();
-            return Ok("Excluído com sucesso!");
+            return Ok(new { message = "Excluído com sucesso!" });
         }
         catch (Exception ex)
         {
